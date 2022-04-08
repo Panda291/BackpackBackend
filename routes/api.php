@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+Route::controller(\App\Http\Controllers\GadgetController::class)->group(function () {
+    Route::get('/gadgets', 'index');
+    Route::post('/gadgets', 'store');
+    Route::patch('/gadgets/{gadget}', 'update');
+    Route::delete('/gadgets/{gadget}', 'destroy');
 });
