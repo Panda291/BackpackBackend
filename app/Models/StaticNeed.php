@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class StaticNeed extends Model
 {
-    use HasFactory;
+    use hasFactory;
+
+    protected $fillable = [
+        'foreignId',
+        'needed_on'
+    ];
 }

@@ -2,85 +2,62 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreStaticNeedRequest;
-use App\Http\Requests\UpdateStaticNeedRequest;
 use App\Models\StaticNeed;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class StaticNeedController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
-    public function index()
+    public function index(Request $request): Response
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        if($request->filled('date')) {
+            return Response(DB::table('static_needs')->whereDate('needed_on', $request->get('date')->get()));
+        } else return Response(StaticNeed::all());
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreStaticNeedRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function store(StoreStaticNeedRequest $request)
+    public function store(): Response
     {
-        //
-    }
+        $attributes = Request()->validate([
+            'gadget_id' => ['required', Rule::exists('gadgets', 'id')],
+            'needed_on' => 'required'
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\StaticNeed  $staticNeed
-     * @return \Illuminate\Http\Response
-     */
-    public function show(StaticNeed $staticNeed)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\StaticNeed  $staticNeed
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(StaticNeed $staticNeed)
-    {
-        //
+        return Response(StaticNeed::create($attributes));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateStaticNeedRequest  $request
-     * @param  \App\Models\StaticNeed  $staticNeed
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param StaticNeed $staticNeed
+     * @return Response
      */
-    public function update(UpdateStaticNeedRequest $request, StaticNeed $staticNeed)
+    public function update(Request $request, StaticNeed $staticNeed): Response
     {
-        //
+        return Response($staticNeed->update($request->all()));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\StaticNeed  $staticNeed
-     * @return \Illuminate\Http\Response
+     * @param StaticNeed $staticNeed
+     * @return Response
      */
-    public function destroy(StaticNeed $staticNeed)
+    public function destroy(StaticNeed $staticNeed): Response
     {
-        //
+        return Response($staticNeed->delete());
     }
 }

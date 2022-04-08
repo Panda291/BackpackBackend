@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreStaticGadgetRequest;
-use App\Http\Requests\UpdateStaticGadgetRequest;
 use App\Models\Gadget;
-use http\Env\Request;
+use Illuminate\Http\Response;
 
 class GadgetController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function index()
+    public function index(): Response
     {
         return Response(Gadget::all());
     }
@@ -22,12 +20,12 @@ class GadgetController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function store()
+    public function store(): Response
     {
         $attributes = Request()->validate([
-            'name' => 'required',
+            'name' => ['required', 'unique:gadgets'],
         ]);
         return Response(Gadget::create($attributes));
     }
@@ -35,13 +33,13 @@ class GadgetController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Models\Gadget  $gadget
-     * @return \Illuminate\Http\Response
+     * @param Gadget $gadget
+     * @return Response
      */
-    public function update(Gadget $gadget)
+    public function update(Gadget $gadget): Response
     {
         $attributes = Request()->validate([
-            'name' => 'required',
+            'name' => ['required', 'unique:gadgets'],
         ]);
 
         return Response($gadget->update($attributes));
@@ -50,10 +48,10 @@ class GadgetController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Gadget  $gadget
-     * @return \Illuminate\Http\Response
+     * @param Gadget $gadget
+     * @return Response
      */
-    public function destroy(Gadget $gadget)
+    public function destroy(Gadget $gadget): Response
     {
         return Response($gadget->delete());
     }

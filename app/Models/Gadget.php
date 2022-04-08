@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Gadget extends Model
 {
+    use hasFactory;
+
     protected $fillable = [
         'name'
     ];
