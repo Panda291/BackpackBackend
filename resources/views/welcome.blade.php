@@ -408,7 +408,8 @@
                 <div class="p-6">
                     <div class="flex items-center">
                         <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
-                                                                             class="underline text-gray-900 dark:text-white">GET: /</a>
+                                                                             class="underline text-gray-900 dark:text-white">GET:
+                                /</a>
                         </div>
                     </div>
 
@@ -424,7 +425,8 @@
                 <div class="p-6">
                     <div class="flex items-center">
                         <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
-                                                                             class="underline text-gray-900 dark:text-white">GET: /api/gadgets</a>
+                                                                             class="underline text-gray-900 dark:text-white">GET:
+                                /api/gadgets</a>
                         </div>
                     </div>
 
@@ -440,13 +442,14 @@
                 <div class="p-6">
                     <div class="flex items-center">
                         <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
-                                                                             class="underline text-gray-900 dark:text-white">POST: /api/gadgets</a>
+                                                                             class="underline text-gray-900 dark:text-white">POST:
+                                /api/gadgets</a>
                         </div>
                     </div>
 
                     <div class="ml-12">
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                            Creates a gadget from the request body and returns the complete gadget. <br />
+                            Creates a gadget from the request body and returns the complete gadget. <br/>
                             A 'name' must be supplied in the request.
                         </div>
                     </div>
@@ -457,13 +460,15 @@
                 <div class="p-6">
                     <div class="flex items-center">
                         <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
-                                                                             class="underline text-gray-900 dark:text-white">PATCH: /api/gadgets/{gadget}</a>
+                                                                             class="underline text-gray-900 dark:text-white">PATCH:
+                                /api/gadgets/{gadget}</a>
                         </div>
                     </div>
 
                     <div class="ml-12">
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                            Edits the gadget whose id is provided in the url, using the attributes provided in the request body<br />
+                            Edits the gadget whose id is provided in the url, using the attributes provided in the
+                            request body<br/>
                             A 'name' must be supplied in the request.
                         </div>
                     </div>
@@ -474,7 +479,8 @@
                 <div class="p-6">
                     <div class="flex items-center">
                         <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
-                                                                             class="underline text-gray-900 dark:text-white">DELETE: /api/gadgets/{gadget}</a>
+                                                                             class="underline text-gray-900 dark:text-white">DELETE:
+                                /api/gadgets/{gadget}</a>
                         </div>
                     </div>
 
@@ -490,7 +496,25 @@
                 <div class="p-6">
                     <div class="flex items-center">
                         <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
-                                                                             class="underline text-gray-900 dark:text-white">GET: /api/static_needs</a>
+                                                                             class="underline text-gray-900 dark:text-white">GET:
+                                /api/gadgets/{gadget}/switch</a>
+                        </div>
+                    </div>
+
+                    <div class="ml-12">
+                        <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                            Debug route. Use to switch in_backpack between true and false.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <div class="p-6">
+                    <div class="flex items-center">
+                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
+                                                                             class="underline text-gray-900 dark:text-white">GET:
+                                /api/static_needs</a>
                         </div>
                     </div>
 
@@ -506,13 +530,14 @@
                 <div class="p-6">
                     <div class="flex items-center">
                         <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
-                                                                             class="underline text-gray-900 dark:text-white">POST: /api/static_needs</a>
+                                                                             class="underline text-gray-900 dark:text-white">POST:
+                                /api/static_needs</a>
                         </div>
                     </div>
 
                     <div class="ml-12">
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                            Creates a StaticNeed from the request body and returns the complete static. <br />
+                            Creates a StaticNeed from the request body and returns the complete static. <br/>
                             A 'gadget_id' must be supplied in the request.
                             A 'needed_at' date must be supplied in the request.
                         </div>
@@ -524,14 +549,16 @@
                 <div class="p-6">
                     <div class="flex items-center">
                         <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
-                                                                             class="underline text-gray-900 dark:text-white">PATCH: /api/static_needs{static_need}</a>
+                                                                             class="underline text-gray-900 dark:text-white">PATCH:
+                                /api/static_needs{static_need}</a>
                         </div>
                     </div>
 
                     <div class="ml-12">
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                            Edits the gadget whose id is provided in the url, using the attributes provided in the request body <br />
-                            A 'gadget_id' can be supplied in the request. <br />
+                            Edits the gadget whose id is provided in the url, using the attributes provided in the
+                            request body <br/>
+                            A 'gadget_id' can be supplied in the request. <br/>
                             A 'needed_at' date can be supplied in the request.
                         </div>
                     </div>
@@ -542,13 +569,51 @@
                 <div class="p-6">
                     <div class="flex items-center">
                         <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
-                                                                             class="underline text-gray-900 dark:text-white">DELETE: /api/static_needs{static_need}</a>
+                                                                             class="underline text-gray-900 dark:text-white">DELETE:
+                                /api/static_needs{static_need}</a>
                         </div>
                     </div>
 
                     <div class="ml-12">
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                             Deletes the StaticNeed specified in the url.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <div class="p-6">
+                    <div class="flex items-center">
+                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
+                                                                             class="underline text-gray-900 dark:text-white">POST:
+                                /api/set_contents</a>
+                        </div>
+                    </div>
+
+                    <div class="ml-12">
+                        <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                            Sets 'in_backpack' to false for all items except the ones whose RFIDs were passed as
+                            'RFIDs'. <br/>
+                            Example body: { 'RFIDs': ["AAA", "BBB", "CCC"] }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <div class="p-6">
+                    <div class="flex items-center">
+                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
+                                                                             class="underline text-gray-900 dark:text-white">GET:
+                                /api/missing</a>
+                        </div>
+                    </div>
+
+                    <div class="ml-12">
+                        <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                            Returns a list of all items that should be in the backpack but aren't. <br/>
+                            This is materialized based on the 'in_backpack' field and the existing StaticNeeds.
                         </div>
                     </div>
                 </div>

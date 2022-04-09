@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\BackpackController;
 use App\Http\Controllers\GadgetController;
 use App\Http\Controllers\StaticNeedController;
+use App\Http\Controllers\DebugController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,9 +29,16 @@ Route::controller(GadgetController::class)->group(function () {
     Route::delete('/gadgets/{gadget}', 'destroy');
 });
 
+Route::get('/gadgets/{gadget}/switch', [DebugController::class, 'switch']);
+
 Route::controller(StaticNeedController::class)->group(function () {
    Route::get('/static_needs', 'index');
     Route::post('/static_needs', 'store');
     Route::patch('/static_needs/{static_need}', 'update');
     Route::delete('/static_needs/{static_need}', 'destroy');
+});
+
+Route::controller(BackpackController::class)->group(function () {
+   Route::post('/set_contents', 'setContents');
+   Route::get('/missing', 'allPresent');
 });

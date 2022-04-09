@@ -41,7 +41,6 @@ class GadgetController extends Controller
         $attributes = Request()->validate([
             'name' => ['required', 'unique:gadgets'],
         ]);
-
         return Response($gadget->update($attributes));
     }
 
