@@ -5,16 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Gadget extends Model
+class DynamicNeed extends Model
 {
-    use hasFactory;
+    use HasFactory;
 
     protected $fillable = [
-        'name'
-    ];
-
-    protected $attributes = [
-        'in_backpack' => false,
+        'gadget_id',
+        'day_of_week',
     ];
 
     protected $hidden = [

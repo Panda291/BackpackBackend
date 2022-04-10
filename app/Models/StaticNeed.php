@@ -10,7 +10,12 @@ class StaticNeed extends Model
     use hasFactory;
 
     protected $fillable = [
-        'foreignId',
+        'gadget_id',
         'needed_on'
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at'
     ];
 }

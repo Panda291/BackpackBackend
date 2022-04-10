@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BackpackController;
+use App\Http\Controllers\DynamicNeedController;
 use App\Http\Controllers\GadgetController;
 use App\Http\Controllers\StaticNeedController;
 use App\Http\Controllers\DebugController;
@@ -25,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 Route::controller(GadgetController::class)->group(function () {
     Route::get('/gadgets', 'index');
     Route::post('/gadgets', 'store');
+    Route::get('/gadgets/{gadget}', 'show');
     Route::patch('/gadgets/{gadget}', 'update');
     Route::delete('/gadgets/{gadget}', 'destroy');
 });
@@ -32,13 +34,22 @@ Route::controller(GadgetController::class)->group(function () {
 Route::get('/gadgets/{gadget}/switch', [DebugController::class, 'switch']);
 
 Route::controller(StaticNeedController::class)->group(function () {
-   Route::get('/static_needs', 'index');
+    Route::get('/static_needs', 'index');
     Route::post('/static_needs', 'store');
+    Route::get('/static_needs/{static_need}', 'show');
     Route::patch('/static_needs/{static_need}', 'update');
     Route::delete('/static_needs/{static_need}', 'destroy');
 });
 
 Route::controller(BackpackController::class)->group(function () {
-   Route::post('/set_contents', 'setContents');
-   Route::get('/missing', 'allPresent');
+    Route::post('/set_contents', 'setContents');
+    Route::get('/missing', 'allPresent');
+});
+
+Route::controller(DynamicNeedController::class)->group(function () {
+    Route::get('/dynamic_needs', 'index');
+    Route::post('/dynamic_needs', 'store');
+    Route::get('/dynamic_needs/{dynamic_need}', 'show');
+    Route::patch('/dynamic_needs/{dynamic_need}', 'update');
+    Route::delete('/dynamic_needs/{dynamic_need}', 'destroy');
 });

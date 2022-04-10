@@ -32,10 +32,15 @@ class StaticNeedController extends Controller
     {
         $attributes = Request()->validate([
             'gadget_id' => ['required', Rule::exists('gadgets', 'id')],
-            'needed_on' => 'required'
+            'needed_on' => 'required|date'
         ]);
 
         return Response(StaticNeed::create($attributes));
+    }
+
+    public function show(StaticNeed $staticNeed): Response
+    {
+        return Response($staticNeed);
     }
 
     /**
@@ -47,7 +52,11 @@ class StaticNeedController extends Controller
      */
     public function update(Request $request, StaticNeed $staticNeed): Response
     {
-        return Response($staticNeed->update($request->all()));
+        $attributes = $request->validate([
+            'gadget_id' => Rule::exists('gadgets', 'id'),
+        ]);
+
+        return Response($staticNeed->update($attributes));
     }
 
     /**

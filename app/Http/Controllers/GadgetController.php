@@ -30,6 +30,11 @@ class GadgetController extends Controller
         return Response(Gadget::create($attributes));
     }
 
+    public function show(Gadget $gadget): Response
+    {
+        return Response($gadget);
+    }
+
     /**
      * Update the specified resource in storage.
      *
