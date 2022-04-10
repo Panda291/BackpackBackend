@@ -36,7 +36,9 @@ class BackpackController extends Controller
             return $e->gadget_id;
         }, $staticNeeds);
         $dynamicNeeds = DynamicNeed::all()->where('day_of_week', Carbon::today()->dayOfWeek)
-        ->map(function($e) { return $e->gadget_id; })->all();
+        ->map(function ($e) {
+            return $e->gadget_id;
+        })->all();
         $needs = array_merge($staticNeeds, $dynamicNeeds);
 
         $missingGadgets = Gadget::all()->where('in_backpack', false)->whereIn('id', $needs);

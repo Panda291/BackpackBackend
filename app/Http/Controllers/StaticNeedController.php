@@ -37,7 +37,6 @@ class StaticNeedController extends Controller
         }
 
         return Response($filters->get());
-
     }
 
     /**
