@@ -18,8 +18,8 @@ class StaticNeedController extends Controller
      */
     public function index(Request $request): Response
     {
-        if($request->filled('date')) {
-            return Response(DB::table('static_needs')->whereDate('needed_on', $request->get('date')->get()));
+        if($request->filled('needed_on')) {
+            return Response(DB::table('static_needs')->whereDate('needed_on', $request->get('needed_on'))->get());
         } else return Response(StaticNeed::all());
     }
 
@@ -38,6 +38,12 @@ class StaticNeedController extends Controller
         return Response(StaticNeed::create($attributes));
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param StaticNeed $staticNeed
+     * @return Response
+     */
     public function show(StaticNeed $staticNeed): Response
     {
         return Response($staticNeed);

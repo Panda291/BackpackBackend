@@ -537,7 +537,8 @@
 
                     <div class="ml-12">
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                            Returns a list containing all static needs.
+                            Returns a list containing all static needs. <br />
+                            A 'needed_on' value may be passed to only get needs for a specific day.
                         </div>
                     </div>
                 </div>

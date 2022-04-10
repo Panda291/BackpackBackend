@@ -30,6 +30,12 @@ class GadgetController extends Controller
         return Response(Gadget::create($attributes));
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param Gadget $gadget
+     * @return Response
+     */
     public function show(Gadget $gadget): Response
     {
         return Response($gadget);
