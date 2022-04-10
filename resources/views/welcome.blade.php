@@ -538,7 +538,10 @@
                     <div class="ml-12">
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                             Returns a list containing all static needs. <br />
-                            A 'needed_on' value may be passed to only get needs for a specific day.
+                            A 'needed_on' value may be passed to only get needs for a specific day. <br />
+                            A 'gadget_id' value may be passed to only get needs for a specific gadget. <br />
+                            A date is of the form 'yyyy-mm-dd' <br />
+                            These optionals may be combined.
                         </div>
                     </div>
                 </div>
@@ -556,8 +559,9 @@
                     <div class="ml-12">
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                             Creates a StaticNeed from the request body and returns the complete static. <br/>
-                            A 'gadget_id' must be supplied in the request.
-                            A 'needed_at' date must be supplied in the request.
+                            A 'gadget_id' must be supplied in the request. <br />
+                            A 'needed_on' date must be supplied in the request. <br />
+                            A date is of the form 'yyyy-mm-dd'
                         </div>
                     </div>
                 </div>
@@ -594,7 +598,8 @@
                             Edits the static need whose id is provided in the url, using the attributes provided in the
                             request body <br/>
                             A 'gadget_id' can be supplied in the request. <br/>
-                            A 'needed_at' date can be supplied in the request.
+                            A 'needed_on' date can be supplied in the request. <br />
+                            A date is of the form 'yyyy-mm-dd'
                         </div>
                     </div>
                 </div>
@@ -628,7 +633,10 @@
 
                     <div class="ml-12">
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                            Returns a list containing all dynamic needs.
+                            Returns a list containing all dynamic needs. <br />
+                            A 'day_of_week' value may be passed to only get needs for a specific day. <br />
+                            A 'gadget_id' value may be passed to only get needs for a specific gadget. <br />
+                            These optionals may be combined.
                         </div>
                     </div>
                 </div>
@@ -685,7 +693,8 @@
                             Edits the dynamic need whose id is provided in the url, using the attributes provided in the
                             request body <br/>
                             A 'gadget_id' can be supplied in the request. <br/>
-                            A 'needed_at' date can be supplied in the request.
+                            A 'needed_on' date can be supplied in the request. <br />
+                            A date is of the form 'yyyy-mm-dd'
                         </div>
                     </div>
                 </div>
@@ -738,7 +747,7 @@
                     <div class="ml-12">
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                             Returns a list of all items that should be in the backpack but aren't. <br/>
-                            This is materialized based on the 'in_backpack' field and the existing StaticNeeds.
+                            This is materialized based on the 'in_backpack' field and the existing static and dynamic needs.
                         </div>
                     </div>
                 </div>

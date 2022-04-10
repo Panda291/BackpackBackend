@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DynamicNeed;
+use App\Models\Gadget;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -18,9 +19,21 @@ class DynamicNeedController extends Controller
      */
     public function index(Request $request): Response
     {
-        if($request->filled('day_of_week')) {
-            return Response(DynamicNeed::all()->where('day_of_week', $request->get('day_of_week')));
-        } else return Response(DynamicNeed::all());
+        $attributes = $request->validate([
+           'day_of_week' => 'numeric|between:0,7',
+           'gadget_id' => Rule::exists('gadgets', 'id'),
+        ]);
+
+        $filters = DynamicNeed::query();
+
+        if (array_key_exists('day_of_week', $attributes)) {
+            $filters->where('day_of_week', $attributes['day_of_week']);
+        }
+        if (array_key_exists('gadget_id', $attributes)) {
+            $filters->where('gadget_id', $attributes['gadget_id']);
+        }
+
+        return Response($filters->get());
     }
 
     /**

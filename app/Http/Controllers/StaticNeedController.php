@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gadget;
 use App\Models\StaticNeed;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -18,9 +19,25 @@ class StaticNeedController extends Controller
      */
     public function index(Request $request): Response
     {
-        if($request->filled('needed_on')) {
-            return Response(DB::table('static_needs')->whereDate('needed_on', $request->get('needed_on'))->get());
-        } else return Response(StaticNeed::all());
+//        if($request->filled('needed_on')) {
+//            return Response(DB::table('static_needs')->whereDate('needed_on', $request->get('needed_on'))->get());
+//        } else return Response(StaticNeed::all());
+        $attributes = $request->validate([
+            'needed_on' => 'date',
+            'gadget_id' => Rule::exists('gadgets', 'id'),
+        ]);
+
+        $filters = StaticNeed::query();
+
+        if (array_key_exists('needed_on', $attributes)) {
+            $filters->whereDate('needed_on', $attributes['needed_on']);
+        }
+        if (array_key_exists('gadget_id', $attributes)) {
+            $filters->where('gadget_id', $attributes['gadget_id']);
+        }
+
+        return Response($filters->get());
+
     }
 
     /**
