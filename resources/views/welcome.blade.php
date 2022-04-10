@@ -460,6 +460,23 @@
                 <div class="p-6">
                     <div class="flex items-center">
                         <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
+                                                                             class="underline text-gray-900 dark:text-white">GET:
+                                /api/gadgets/{gadget}</a>
+                        </div>
+                    </div>
+
+                    <div class="ml-12">
+                        <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                            Returns the full body of the specified gadget.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <div class="p-6">
+                    <div class="flex items-center">
+                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
                                                                              class="underline text-gray-900 dark:text-white">PATCH:
                                 /api/gadgets/{gadget}</a>
                         </div>
@@ -520,7 +537,7 @@
 
                     <div class="ml-12">
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                            Returns a list containing all gadgets.
+                            Returns a list containing all static needs.
                         </div>
                     </div>
                 </div>
@@ -549,6 +566,23 @@
                 <div class="p-6">
                     <div class="flex items-center">
                         <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
+                                                                             class="underline text-gray-900 dark:text-white">GET:
+                                /api/static_needs/{static_need}</a>
+                        </div>
+                    </div>
+
+                    <div class="ml-12">
+                        <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                            Returns the full body of the specified static need.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <div class="p-6">
+                    <div class="flex items-center">
+                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
                                                                              class="underline text-gray-900 dark:text-white">PATCH:
                                 /api/static_needs{static_need}</a>
                         </div>
@@ -556,7 +590,7 @@
 
                     <div class="ml-12">
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                            Edits the gadget whose id is provided in the url, using the attributes provided in the
+                            Edits the static need whose id is provided in the url, using the attributes provided in the
                             request body <br/>
                             A 'gadget_id' can be supplied in the request. <br/>
                             A 'needed_at' date can be supplied in the request.
@@ -576,7 +610,98 @@
 
                     <div class="ml-12">
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                            Deletes the StaticNeed specified in the url.
+                            Deletes the static need specified in the url.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <div class="p-6">
+                    <div class="flex items-center">
+                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
+                                                                             class="underline text-gray-900 dark:text-white">GET:
+                                /api/dynamic_needs</a>
+                        </div>
+                    </div>
+
+                    <div class="ml-12">
+                        <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                            Returns a list containing all dynamic needs.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <div class="p-6">
+                    <div class="flex items-center">
+                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
+                                                                             class="underline text-gray-900 dark:text-white">POST:
+                                /api/dynamic_needs</a>
+                        </div>
+                    </div>
+
+                    <div class="ml-12">
+                        <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                            Creates a StaticNeed from the request body and returns the complete dynamic need. <br/>
+                            A 'gadget_id' must be supplied in the request. <br />
+                            A 'day_of_week' date must be supplied in the request. <br >
+                            This day is a number between 0 and 7. 0 being sunday, 1 being monday, ...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <div class="p-6">
+                    <div class="flex items-center">
+                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
+                                                                             class="underline text-gray-900 dark:text-white">GET:
+                                /api/dynamic_needs/{dynamic_need}</a>
+                        </div>
+                    </div>
+
+                    <div class="ml-12">
+                        <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                            Returns the full body of the specified dynamic need.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <div class="p-6">
+                    <div class="flex items-center">
+                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
+                                                                             class="underline text-gray-900 dark:text-white">PATCH:
+                                /api/dynamic_needs{dynamic_need}</a>
+                        </div>
+                    </div>
+
+                    <div class="ml-12">
+                        <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                            Edits the dynamic need whose id is provided in the url, using the attributes provided in the
+                            request body <br/>
+                            A 'gadget_id' can be supplied in the request. <br/>
+                            A 'needed_at' date can be supplied in the request.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <div class="p-6">
+                    <div class="flex items-center">
+                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
+                                                                             class="underline text-gray-900 dark:text-white">DELETE:
+                                /api/dynamic_needs{dynamic_need}</a>
+                        </div>
+                    </div>
+
+                    <div class="ml-12">
+                        <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                            Deletes the dynamic need specified in the url.
                         </div>
                     </div>
                 </div>
