@@ -729,7 +729,9 @@
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                             Sets 'in_backpack' to false for all items except the ones whose RFIDs were passed as
                             'RFIDs'. <br/>
-                            Example body: { 'RFIDs': ["AAA", "BBB", "CCC"] }
+                            Example body: { 'RFIDs': ["AAA", "BBB", "CCC"] } <br />
+                            Returns a 202 (Accepted) status code upon successfully accepting the RFID tags. <br />
+                            Any unknown RFID tags are automatically turned into Gadgets.
                         </div>
                     </div>
                 </div>
@@ -746,7 +748,8 @@
 
                     <div class="ml-12">
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                            Returns a list of all items that should be in the backpack but aren't. <br/>
+                            Returns a 204 status code (No Content) if no items are missing <br />
+                            Otherwise returns a list of all items that should be in the backpack but aren't. <br/>
                             This is materialized based on the 'in_backpack' field and the existing static and dynamic needs.
                         </div>
                     </div>

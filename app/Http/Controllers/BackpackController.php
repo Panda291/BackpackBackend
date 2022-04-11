@@ -55,6 +55,10 @@ class BackpackController extends Controller
         $needs = array_merge($staticNeeds, $dynamicNeeds);
 
         $missingGadgets = Gadget::all()->where('in_backpack', false)->whereIn('id', $needs);
-        return Response($missingGadgets);
+        if (empty($missingGadgets->all())) {
+            return Response('', 204);
+        } else {
+            return Response($missingGadgets);
+        }
     }
 }
