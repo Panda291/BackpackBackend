@@ -22,11 +22,24 @@ class BackpackController extends Controller
             'RFIDs' => 'required',
         ]);
         $addedGadgets = Gadget::all()->whereIn('RFID', json_decode($attributes['RFIDs']));
+        $newGadgets = array_diff(json_decode($attributes['RFIDs']), $addedGadgets->map(function ($e) {
+            return $e->RFID ;
+        })->all());
+
+        foreach ($newGadgets as $gadgetRFID) {
+            $gadget = Gadget::create([
+               'name' => $gadgetRFID,
+            ]);
+            $gadget->RFID = $gadgetRFID;
+            $gadget->in_backpack = true;
+            $gadget->save();
+        }
+
         foreach ($addedGadgets as $gadget) {
             $gadget->in_backpack = true;
             $gadget->save();
         }
-        return Response($addedGadgets);
+        return Response('', 202);
     }
 
     public function allPresent()
