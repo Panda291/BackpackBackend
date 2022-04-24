@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\DynamicNeed;
 use App\Models\Gadget;
-use App\Models\StaticNeed;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

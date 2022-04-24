@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Gadget;
 use App\Models\StaticNeed;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
 class StaticNeedController extends Controller
@@ -76,6 +74,7 @@ class StaticNeedController extends Controller
     {
         $attributes = $request->validate([
             'gadget_id' => Rule::exists('gadgets', 'id'),
+            'needed_on' => 'date',
         ]);
 
         return Response($staticNeed->update($attributes));

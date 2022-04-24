@@ -33,12 +33,12 @@ Route::controller(GadgetController::class)->group(function () {
 
 Route::get('/gadgets/{gadget}/switch', [DebugController::class, 'switch']);
 
-Route::controller(StaticNeedController::class)->group(function () {
+Route::controller(DynamicNeedController::class)->group(function () {
     Route::get('/static_needs', 'index');
     Route::post('/static_needs', 'store');
-    Route::get('/static_needs/{static_need}', 'show');
-    Route::patch('/static_needs/{static_need}', 'update');
-    Route::delete('/static_needs/{static_need}', 'destroy');
+    Route::get('/static_needs/{dynamic_need}', 'show');
+    Route::patch('/static_needs/{dynamic_need}', 'update');
+    Route::delete('/static_needs/{dynamic_need}', 'destroy');
 });
 
 Route::controller(BackpackController::class)->group(function () {
@@ -46,10 +46,10 @@ Route::controller(BackpackController::class)->group(function () {
     Route::get('/missing', 'allPresent');
 });
 
-Route::controller(DynamicNeedController::class)->group(function () {
+Route::controller(StaticNeedController::class)->group(function () {
     Route::get('/dynamic_needs', 'index');
     Route::post('/dynamic_needs', 'store');
-    Route::get('/dynamic_needs/{dynamic_need}', 'show');
-    Route::patch('/dynamic_needs/{dynamic_need}', 'update');
-    Route::delete('/dynamic_needs/{dynamic_need}', 'destroy');
+    Route::get('/dynamic_needs/{static_need}', 'show');
+    Route::patch('/dynamic_needs/{static_need}', 'update');
+    Route::delete('/dynamic_needs/{static_need}', 'destroy');
 });
