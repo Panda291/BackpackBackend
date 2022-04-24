@@ -49,7 +49,12 @@ class StaticNeedController extends Controller
             'needed_on' => 'required|date'
         ]);
 
-        return Response(StaticNeed::create($attributes));
+        if (StaticNeed::query()->where('gadget_id', $attributes['gadget_id'])
+            ->where('needed_on', $attributes['needed_on'])->get()->isEmpty()) {
+            return Response(StaticNeed::create($attributes));
+        } else {
+            return Response('A dynamic need for that gadget already exists for that day', 400);
+        }
     }
 
     /**
@@ -77,7 +82,25 @@ class StaticNeedController extends Controller
             'needed_on' => 'date',
         ]);
 
-        return Response($staticNeed->update($attributes));
+        $filters = StaticNeed::query();
+
+        if (array_key_exists('needed_on', $attributes)) {
+            $filters->whereDate('needed_on', $attributes['needed_on']);
+        } else {
+            $filters->whereDate('needed_on', $staticNeed->needed_on);
+        }
+
+        if (array_key_exists('gadget_id', $attributes)) {
+            $filters->where('gadget_id', $attributes['gadget_id']);
+        } else {
+            $filters->where('gadget_id', $staticNeed->gadget_id);
+        }
+        
+        if (empty($filters->get()->all())) {
+            return Response($staticNeed->update($attributes));
+        } else {
+            return Response('A dynamic need for that gadget already exists for that day', 400);
+        }
     }
 
     /**

@@ -31,8 +31,6 @@ class GadgetController extends Controller
         }
 
         return Response($filters->get());
-
-        return Response(Gadget::all());
     }
 
     /**
