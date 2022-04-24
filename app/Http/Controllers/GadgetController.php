@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gadget;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Validation\Rule;
 
 class GadgetController extends Controller
 {
@@ -12,8 +14,24 @@ class GadgetController extends Controller
      *
      * @return Response
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
+        $attributes = $request->validate([
+            'in_backpack' => 'boolean',
+            'id' => Rule::exists('gadgets', 'id'),
+        ]);
+
+        $filters = Gadget::query();
+
+        if (array_key_exists('in_backpack', $attributes)) {
+            $filters->where('in_backpack', $attributes['in_backpack']);
+        }
+        if (array_key_exists('gadget_id', $attributes)) {
+            $filters->where('id', $attributes['id']);
+        }
+
+        return Response($filters->get());
+
         return Response(Gadget::all());
     }
 

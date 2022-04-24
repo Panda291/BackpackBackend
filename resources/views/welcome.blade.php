@@ -433,6 +433,7 @@
                     <div class="ml-12">
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                             Returns a list containing all gadgets.
+                            Optional filters are 'id' and 'in_backpack'.
                         </div>
                     </div>
                 </div>
@@ -531,13 +532,13 @@
                     <div class="flex items-center">
                         <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
                                                                              class="underline text-gray-900 dark:text-white">GET:
-                                /api/static_needs</a>
+                                /api/dynamic_needs</a>
                         </div>
                     </div>
 
                     <div class="ml-12">
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                            Returns a list containing all static needs. <br />
+                            Returns a list containing all dynamic needs. <br />
                             A 'needed_on' value may be passed to only get needs for a specific day. <br />
                             A 'gadget_id' value may be passed to only get needs for a specific gadget. <br />
                             A date is of the form 'yyyy-mm-dd' <br />
@@ -552,111 +553,16 @@
                     <div class="flex items-center">
                         <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
                                                                              class="underline text-gray-900 dark:text-white">POST:
-                                /api/static_needs</a>
+                                /api/dynamic_needs</a>
                         </div>
                     </div>
 
                     <div class="ml-12">
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                            Creates a StaticNeed from the request body and returns the complete static. <br/>
+                            Creates a DynamicNeed from the request body and returns the complete dynamic. <br/>
                             A 'gadget_id' must be supplied in the request. <br />
                             A 'needed_on' date must be supplied in the request. <br />
                             A date is of the form 'yyyy-mm-dd'
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-6">
-                <div class="p-6">
-                    <div class="flex items-center">
-                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
-                                                                             class="underline text-gray-900 dark:text-white">GET:
-                                /api/static_needs/{static_need}</a>
-                        </div>
-                    </div>
-
-                    <div class="ml-12">
-                        <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                            Returns the full body of the specified static need.
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-6">
-                <div class="p-6">
-                    <div class="flex items-center">
-                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
-                                                                             class="underline text-gray-900 dark:text-white">PATCH:
-                                /api/static_needs{static_need}</a>
-                        </div>
-                    </div>
-
-                    <div class="ml-12">
-                        <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                            Edits the static need whose id is provided in the url, using the attributes provided in the
-                            request body <br/>
-                            A 'gadget_id' can be supplied in the request. <br/>
-                            A 'needed_on' date can be supplied in the request. <br />
-                            A date is of the form 'yyyy-mm-dd'
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-6">
-                <div class="p-6">
-                    <div class="flex items-center">
-                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
-                                                                             class="underline text-gray-900 dark:text-white">DELETE:
-                                /api/static_needs{static_need}</a>
-                        </div>
-                    </div>
-
-                    <div class="ml-12">
-                        <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                            Deletes the static need specified in the url.
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-6">
-                <div class="p-6">
-                    <div class="flex items-center">
-                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
-                                                                             class="underline text-gray-900 dark:text-white">GET:
-                                /api/dynamic_needs</a>
-                        </div>
-                    </div>
-
-                    <div class="ml-12">
-                        <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                            Returns a list containing all dynamic needs. <br />
-                            A 'day_of_week' value may be passed to only get needs for a specific day. <br />
-                            A 'gadget_id' value may be passed to only get needs for a specific gadget. <br />
-                            These optionals may be combined.
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-6">
-                <div class="p-6">
-                    <div class="flex items-center">
-                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
-                                                                             class="underline text-gray-900 dark:text-white">POST:
-                                /api/dynamic_needs</a>
-                        </div>
-                    </div>
-
-                    <div class="ml-12">
-                        <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                            Creates a StaticNeed from the request body and returns the complete dynamic need. <br/>
-                            A 'gadget_id' must be supplied in the request. <br />
-                            A 'day_of_week' date must be supplied in the request. <br >
-                            This day is a number between 0 and 7. 0 being sunday, 1 being monday, ...
                         </div>
                     </div>
                 </div>
@@ -712,6 +618,101 @@
                     <div class="ml-12">
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                             Deletes the dynamic need specified in the url.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-6">
+                <div class="p-6">
+                    <div class="flex items-center">
+                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
+                                                                             class="underline text-gray-900 dark:text-white">GET:
+                                /api/static_needs</a>
+                        </div>
+                    </div>
+
+                    <div class="ml-12">
+                        <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                            Returns a list containing all static needs. <br />
+                            A 'day_of_week' value may be passed to only get needs for a specific day. <br />
+                            A 'gadget_id' value may be passed to only get needs for a specific gadget. <br />
+                            These optionals may be combined.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-6">
+                <div class="p-6">
+                    <div class="flex items-center">
+                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
+                                                                             class="underline text-gray-900 dark:text-white">POST:
+                                /api/static_needs</a>
+                        </div>
+                    </div>
+
+                    <div class="ml-12">
+                        <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                            Creates a StaticNeed from the request body and returns the complete static need. <br/>
+                            A 'gadget_id' must be supplied in the request. <br />
+                            A 'day_of_week' date must be supplied in the request. <br >
+                            This day is a number between 0 and 7. 0 being sunday, 1 being monday, ...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-6">
+                <div class="p-6">
+                    <div class="flex items-center">
+                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
+                                                                             class="underline text-gray-900 dark:text-white">GET:
+                                /api/static_needs/{static_need}</a>
+                        </div>
+                    </div>
+
+                    <div class="ml-12">
+                        <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                            Returns the full body of the specified static need.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-6">
+                <div class="p-6">
+                    <div class="flex items-center">
+                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
+                                                                             class="underline text-gray-900 dark:text-white">PATCH:
+                                /api/static_needs{static_need}</a>
+                        </div>
+                    </div>
+
+                    <div class="ml-12">
+                        <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                            Edits the static need whose id is provided in the url, using the attributes provided in the
+                            request body <br/>
+                            A 'gadget_id' can be supplied in the request. <br/>
+                            A 'day_of_week' can be supplied in the request. <br />
+                            This day is a number between 0 and 7. 0 being sunday, 1 being monday, ...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-6">
+                <div class="p-6">
+                    <div class="flex items-center">
+                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
+                                                                             class="underline text-gray-900 dark:text-white">DELETE:
+                                /api/static_needs{static_need}</a>
+                        </div>
+                    </div>
+
+                    <div class="ml-12">
+                        <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                            Deletes the static need specified in the url.
                         </div>
                     </div>
                 </div>
