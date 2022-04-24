@@ -44,6 +44,7 @@ Route::controller(DynamicNeedController::class)->group(function () {
 Route::controller(BackpackController::class)->group(function () {
     Route::post('/set_contents', 'setContents');
     Route::get('/missing', 'allPresent');
+    Route::get('/needed', 'needed');
 });
 
 Route::controller(StaticNeedController::class)->group(function () {

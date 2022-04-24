@@ -22,12 +22,12 @@ class BackpackController extends Controller
         ]);
         $addedGadgets = Gadget::all()->whereIn('RFID', json_decode($attributes['RFIDs']));
         $newGadgets = array_diff(json_decode($attributes['RFIDs']), $addedGadgets->map(function ($e) {
-            return $e->RFID ;
+            return $e->RFID;
         })->all());
 
         foreach ($newGadgets as $gadgetRFID) {
             $gadget = Gadget::create([
-               'name' => $gadgetRFID,
+                'name' => $gadgetRFID,
             ]);
             $gadget->RFID = $gadgetRFID;
             $gadget->in_backpack = true;
@@ -48,9 +48,9 @@ class BackpackController extends Controller
             return $e->gadget_id;
         }, $staticNeeds);
         $dynamicNeeds = DynamicNeed::all()->where('day_of_week', Carbon::today()->dayOfWeek)
-        ->map(function ($e) {
-            return $e->gadget_id;
-        })->all();
+            ->map(function ($e) {
+                return $e->gadget_id;
+            })->all();
         $needs = array_merge($staticNeeds, $dynamicNeeds);
 
         $missingGadgets = Gadget::all()->where('in_backpack', false)->whereIn('id', $needs);
@@ -59,5 +59,37 @@ class BackpackController extends Controller
         } else {
             return Response($missingGadgets);
         }
+    }
+
+    public function needed(Request $request)
+    {
+        $attributes = $request->validate([
+            'date' => 'date',
+        ]);
+
+        if (array_key_exists('date', $attributes)) {
+            $staticNeeds = DB::table('static_needs')->whereDate('needed_on', $attributes['date'])
+                ->get('gadget_id')->all();
+        } else {
+            $staticNeeds = DB::table('static_needs')->whereDate('needed_on', Carbon::today())
+                ->get('gadget_id')->all();
+        }
+        $staticNeeds = array_map(function ($e) {
+            return $e->gadget_id;
+        }, $staticNeeds);
+
+        if (array_key_exists('date', $attributes)) {
+            $date = new Carbon($attributes['date']);
+            $dynamicNeeds = DynamicNeed::all()->where('day_of_week', $date->dayOfWeek);
+        } else {
+            $dynamicNeeds = DynamicNeed::all()->where('day_of_week', Carbon::today()->dayOfWeek);
+        }
+        $dynamicIds = $dynamicNeeds
+            ->map(function ($e) {
+                return $e->gadget_id;
+            })->all();
+        $needs = array_merge($staticNeeds, $dynamicIds);
+
+        return Response($needs);
     }
 }

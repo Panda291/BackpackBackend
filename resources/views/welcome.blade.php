@@ -756,6 +756,24 @@
                     </div>
                 </div>
             </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-6">
+                <div class="p-6">
+                    <div class="flex items-center">
+                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
+                                                                             class="underline text-gray-900 dark:text-white">GET:
+                                /api/needed</a>
+                        </div>
+                    </div>
+
+                    <div class="ml-12">
+                        <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                            Returns a list of gadget_ids that are defined to be needed by both static and dynamic needs. <br />
+                            An optional 'date' filter can be given. This defaults to the current day.
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
 
