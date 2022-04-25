@@ -90,6 +90,8 @@ class BackpackController extends Controller
             })->all();
         $needs = array_merge($staticNeeds, $dynamicIds);
 
-        return Response($needs);
+        $missingGadgets = Gadget::all()->whereIn('id', $needs);
+
+        return Response($missingGadgets);
     }
 }
