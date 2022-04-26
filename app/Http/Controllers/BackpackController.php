@@ -28,6 +28,7 @@ class BackpackController extends Controller
         foreach ($newGadgets as $gadgetRFID) {
             $gadget = Gadget::create([
                 'name' => $gadgetRFID,
+                'icon' => 0,
             ]);
             $gadget->RFID = $gadgetRFID;
             $gadget->in_backpack = true;

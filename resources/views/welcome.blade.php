@@ -433,7 +433,7 @@
                     <div class="ml-12">
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                             Returns a list containing all gadgets.
-                            Optional filters are 'id' and 'in_backpack'.
+                            Optional filters are 'id', 'icon' and 'in_backpack'.
                         </div>
                     </div>
                 </div>
@@ -451,7 +451,8 @@
                     <div class="ml-12">
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                             Creates a gadget from the request body and returns the complete gadget. <br/>
-                            A 'name' must be supplied in the request.
+                            A 'name' and 'icon' must be supplied in the request. <br />
+                            This request is deprecated.
                         </div>
                     </div>
                 </div>
@@ -487,7 +488,7 @@
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                             Edits the gadget whose id is provided in the url, using the attributes provided in the
                             request body<br/>
-                            A 'name' must be supplied in the request.
+                            A 'name' or 'icon' must be supplied in the request.
                         </div>
                     </div>
                 </div>

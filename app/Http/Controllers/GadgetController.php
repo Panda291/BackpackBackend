@@ -18,6 +18,7 @@ class GadgetController extends Controller
     {
         $attributes = $request->validate([
             'in_backpack' => 'boolean',
+            'icon' => 'numeric',
             'id' => Rule::exists('gadgets', 'id'),
         ]);
 
@@ -25,6 +26,9 @@ class GadgetController extends Controller
 
         if (array_key_exists('in_backpack', $attributes)) {
             $filters->where('in_backpack', $attributes['in_backpack']);
+        }
+        if (array_key_exists('icon', $attributes)) {
+            $filters->where('icon', $attributes['icon']);
         }
         if (array_key_exists('gadget_id', $attributes)) {
             $filters->where('id', $attributes['id']);
@@ -42,8 +46,9 @@ class GadgetController extends Controller
     {
         $attributes = Request()->validate([
             'name' => ['required', 'unique:gadgets'],
+            'icon' => 'numeric'
         ]);
-        return Response(Gadget::create($attributes));
+        return Response(Gadget::create($attributes), 299);
     }
 
     /**
@@ -66,7 +71,8 @@ class GadgetController extends Controller
     public function update(Gadget $gadget): Response
     {
         $attributes = Request()->validate([
-            'name' => ['required', 'unique:gadgets'],
+            'name' => ['unique:gadgets'],
+            'icon' => 'numeric',
         ]);
         return Response($gadget->update($attributes));
     }
