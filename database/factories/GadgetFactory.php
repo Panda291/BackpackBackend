@@ -16,7 +16,8 @@ class GadgetFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'RFID' => $this->faker->uuid(),
-            'in_backpack' => $this->faker->boolean()
+            'in_backpack' => $this->faker->boolean(),
+            'icon' => $this->faker->numberBetween(0, 6),
         ];
     }
 }

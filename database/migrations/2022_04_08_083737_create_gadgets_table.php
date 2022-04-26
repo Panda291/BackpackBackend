@@ -16,8 +16,9 @@ class CreateGadgetsTable extends Migration
         Schema::create('gadgets', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('RFID')->nullable();
+            $table->string('RFID');
             $table->boolean('in_backpack');
+            $table->integer('icon');
             $table->timestamps();
         });
     }

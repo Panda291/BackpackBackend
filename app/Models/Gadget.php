@@ -10,7 +10,8 @@ class Gadget extends Model
     use hasFactory;
 
     protected $fillable = [
-        'name'
+        'name',
+        'icon',
     ];
 
     protected $attributes = [
@@ -18,7 +19,8 @@ class Gadget extends Model
     ];
 
     protected $hidden = [
+        'RFID',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 }

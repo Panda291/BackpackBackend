@@ -95,7 +95,7 @@ class StaticNeedController extends Controller
         } else {
             $filters->where('gadget_id', $staticNeed->gadget_id);
         }
-        
+
         if (empty($filters->get()->all())) {
             return Response($staticNeed->update($attributes));
         } else {
