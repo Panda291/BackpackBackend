@@ -17,9 +17,6 @@ class StaticNeedController extends Controller
      */
     public function index(Request $request): Response
     {
-//        if($request->filled('needed_on')) {
-//            return Response(DB::table('static_needs')->whereDate('needed_on', $request->get('needed_on'))->get());
-//        } else return Response(StaticNeed::all());
         $attributes = $request->validate([
             'needed_on' => 'date',
             'gadget_id' => Rule::exists('gadgets', 'id'),

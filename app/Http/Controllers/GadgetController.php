@@ -59,6 +59,9 @@ class GadgetController extends Controller
      */
     public function show(Gadget $gadget): Response
     {
+        $gadget->dynamic_needs = $gadget->staticNeeds()->get();
+        $gadget->static_needs = $gadget->dynamicNeeds()->get();
+
         return Response($gadget);
     }
 

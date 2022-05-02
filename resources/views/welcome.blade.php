@@ -469,7 +469,8 @@
 
                     <div class="ml-12">
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                            Returns the full body of the specified gadget.
+                            Returns the full body of the specified gadget. <br />
+                            This body includes the full bodies of all static and dynamic needs the gadget has.
                         </div>
                     </div>
                 </div>
