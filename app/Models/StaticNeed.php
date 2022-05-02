@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,4 +23,9 @@ class StaticNeed extends Model
     protected $casts = [
         'needed_on' => 'datetime',
     ];
+
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return substr_replace($date->format(DateTimeInterface::RFC3339_EXTENDED), 'Z', -6);
+    }
 }
