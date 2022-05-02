@@ -434,6 +434,7 @@
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                             Returns a list containing all gadgets.
                             Optional filters are 'id', 'icon' and 'in_backpack'.
+                            An option parameter 'show_needs' can be passed to add all static and dynamic needs to the relevant gadgets.
                         </div>
                     </div>
                 </div>

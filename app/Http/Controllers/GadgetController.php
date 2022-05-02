@@ -20,6 +20,7 @@ class GadgetController extends Controller
             'in_backpack' => 'boolean',
             'icon' => 'numeric',
             'id' => Rule::exists('gadgets', 'id'),
+            'show_needs' => 'boolean',
         ]);
 
         $filters = Gadget::query();
@@ -32,6 +33,9 @@ class GadgetController extends Controller
         }
         if (array_key_exists('gadget_id', $attributes)) {
             $filters->where('id', $attributes['id']);
+        }
+        if (array_key_exists('show_needs', $attributes) && $attributes['show_needs']) {
+            $filters->with(['staticNeeds', 'dynamicNeeds']);
         }
 
         return Response($filters->get());
