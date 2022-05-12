@@ -77,7 +77,7 @@ class DynamicNeedController extends Controller
     {
         $attributes = $request->validate([
             'gadget_id' => Rule::exists('gadgets', 'id'),
-            'day_of_week' => 'numeric|between:0,7'
+            'day_of_week' => 'numeric|between:0,6'
         ]);
 
         $filters = DynamicNeed::query();

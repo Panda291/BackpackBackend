@@ -16,7 +16,7 @@ class DynamicNeedFactory extends Factory
     {
         return [
             'gadget_id' => $this->faker->randomElement(Gadget::all())->id,
-            'day_of_week' => $this->faker->numberBetween(0, 7),
+            'day_of_week' => $this->faker->numberBetween(0, 6),
         ];
     }
 }
