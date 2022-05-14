@@ -58,7 +58,7 @@ class BackpackController extends Controller
         if (empty($missingGadgets->all())) {
             return Response('', 204);
         } else {
-            return Response($missingGadgets);
+            return Response(array_values($missingGadgets->toArray()));
         }
     }
 
@@ -91,8 +91,8 @@ class BackpackController extends Controller
             })->all();
         $needs = array_merge($staticNeeds, $dynamicIds);
 
-        $missingGadgets = Gadget::all()->whereIn('id', $needs);
+        $neededGadgets = Gadget::all()->whereIn('id', $needs);
 
-        return Response($missingGadgets);
+        return Response(array_values($neededGadgets->toArray()));
     }
 }
