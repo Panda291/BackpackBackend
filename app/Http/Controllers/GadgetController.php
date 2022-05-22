@@ -31,7 +31,7 @@ class GadgetController extends Controller
         if (array_key_exists('icon', $attributes)) {
             $filters->where('icon', $attributes['icon']);
         }
-        if (array_key_exists('gadget_id', $attributes)) {
+        if (array_key_exists('id', $attributes)) {
             $filters->where('id', $attributes['id']);
         }
         if (array_key_exists('show_needs', $attributes) && $attributes['show_needs']) {
