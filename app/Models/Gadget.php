@@ -24,12 +24,12 @@ class Gadget extends Model
         'updated_at',
     ];
 
-    public function staticNeeds()
+    public function dynamicNeeds()
     {
         return $this->hasMany(StaticNeed::class, 'gadget_id', 'id');
     }
 
-    public function dynamicNeeds()
+    public function staticNeeds()
     {
         return $this->hasMany(DynamicNeed::class, 'gadget_id', 'id');
     }
