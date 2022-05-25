@@ -16,7 +16,7 @@ class CreateDynamicNeedsTable extends Migration
         Schema::create('dynamic_needs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('gadget_id');
-            $table->integer('day_of_week'); // DateTime->dayOfWeek => Sunday: 0, Monday: 1, ...
+            $table->dateTime('needed_on');
             $table->timestamps();
         });
     }

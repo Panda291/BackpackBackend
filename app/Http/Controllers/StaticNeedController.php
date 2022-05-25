@@ -18,14 +18,14 @@ class StaticNeedController extends Controller
     public function index(Request $request): Response
     {
         $attributes = $request->validate([
-            'needed_on' => 'date',
+            'day_of_week' => 'numeric|between:0,7',
             'gadget_id' => Rule::exists('gadgets', 'id'),
         ]);
 
         $filters = StaticNeed::query();
 
-        if (array_key_exists('needed_on', $attributes)) {
-            $filters->whereDate('needed_on', $attributes['needed_on']);
+        if (array_key_exists('day_of_week', $attributes)) {
+            $filters->where('day_of_week', $attributes['day_of_week']);
         }
         if (array_key_exists('gadget_id', $attributes)) {
             $filters->where('gadget_id', $attributes['gadget_id']);
@@ -37,17 +37,18 @@ class StaticNeedController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * @param Request $request
      * @return Response
      */
-    public function store(): Response
+    public function store(Request $request): Response
     {
-        $attributes = Request()->validate([
+        $attributes = $request->validate([
             'gadget_id' => ['required', Rule::exists('gadgets', 'id')],
-            'needed_on' => 'required|date'
+            'day_of_week' => 'required|numeric|between:0,7'
         ]);
 
-        if (StaticNeed::query()->where('gadget_id', $attributes['gadget_id'])
-            ->where('needed_on', $attributes['needed_on'])->get()->isEmpty()) {
+        if (StaticNeed::all()->where('gadget_id', $attributes['gadget_id'])
+            ->where('day_of_week', $attributes['day_of_week'])->isEmpty()) {
             return Response(StaticNeed::create($attributes));
         } else {
             return Response('A dynamic need for that gadget already exists for that day', 400);
@@ -57,44 +58,44 @@ class StaticNeedController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param StaticNeed $staticNeed
+     * @param StaticNeed $dynamicNeed
      * @return Response
      */
-    public function show(StaticNeed $staticNeed): Response
+    public function show(StaticNeed $dynamicNeed): Response
     {
-        return Response($staticNeed);
+        return Response($dynamicNeed);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param StaticNeed $staticNeed
+     * @param StaticNeed $dynamicNeed
      * @return Response
      */
-    public function update(Request $request, StaticNeed $staticNeed): Response
+    public function update(Request $request, StaticNeed $dynamicNeed): Response
     {
         $attributes = $request->validate([
             'gadget_id' => Rule::exists('gadgets', 'id'),
-            'needed_on' => 'date',
+            'day_of_week' => 'numeric|between:0,6'
         ]);
 
         $filters = StaticNeed::query();
 
-        if (array_key_exists('needed_on', $attributes)) {
-            $filters->whereDate('needed_on', $attributes['needed_on']);
+        if (array_key_exists('day_of_week', $attributes)) {
+            $filters->where('day_of_week', $attributes['day_of_week']);
         } else {
-            $filters->whereDate('needed_on', $staticNeed->needed_on);
+            $filters->where('day_of_week', $dynamicNeed->day_of_week);
         }
 
         if (array_key_exists('gadget_id', $attributes)) {
             $filters->where('gadget_id', $attributes['gadget_id']);
         } else {
-            $filters->where('gadget_id', $staticNeed->gadget_id);
+            $filters->where('gadget_id', $dynamicNeed->gadget_id);
         }
 
         if (empty($filters->get()->all())) {
-            return Response($staticNeed->update($attributes));
+            return Response($dynamicNeed->update($attributes));
         } else {
             return Response('A dynamic need for that gadget already exists for that day', 400);
         }
@@ -103,11 +104,11 @@ class StaticNeedController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param StaticNeed $staticNeed
+     * @param StaticNeed $dynamicNeed
      * @return Response
      */
-    public function destroy(StaticNeed $staticNeed): Response
+    public function destroy(StaticNeed $dynamicNeed): Response
     {
-        return Response($staticNeed->delete());
+        return Response($dynamicNeed->delete());
     }
 }

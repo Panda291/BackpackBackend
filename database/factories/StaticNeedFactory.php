@@ -16,7 +16,7 @@ class StaticNeedFactory extends Factory
     {
         return [
             'gadget_id' => $this->faker->randomElement(Gadget::all())->id,
-            'needed_on' => $this->faker->dateTimeBetween($startDate = '-3 weeks', $endDate = '+3 weeks'),
+            'day_of_week' => $this->faker->numberBetween(0, 6),
         ];
     }
 }

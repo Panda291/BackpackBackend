@@ -18,14 +18,14 @@ class DynamicNeedController extends Controller
     public function index(Request $request): Response
     {
         $attributes = $request->validate([
-            'day_of_week' => 'numeric|between:0,7',
+            'needed_on' => 'date',
             'gadget_id' => Rule::exists('gadgets', 'id'),
         ]);
 
         $filters = DynamicNeed::query();
 
-        if (array_key_exists('day_of_week', $attributes)) {
-            $filters->where('day_of_week', $attributes['day_of_week']);
+        if (array_key_exists('needed_on', $attributes)) {
+            $filters->whereDate('needed_on', $attributes['needed_on']);
         }
         if (array_key_exists('gadget_id', $attributes)) {
             $filters->where('gadget_id', $attributes['gadget_id']);
@@ -37,18 +37,17 @@ class DynamicNeedController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
      * @return Response
      */
-    public function store(Request $request): Response
+    public function store(): Response
     {
-        $attributes = $request->validate([
+        $attributes = Request()->validate([
             'gadget_id' => ['required', Rule::exists('gadgets', 'id')],
-            'day_of_week' => 'required|numeric|between:0,7'
+            'needed_on' => 'required|date'
         ]);
 
-        if (DynamicNeed::all()->where('gadget_id', $attributes['gadget_id'])
-            ->where('day_of_week', $attributes['day_of_week'])->isEmpty()) {
+        if (DynamicNeed::query()->where('gadget_id', $attributes['gadget_id'])
+            ->where('needed_on', $attributes['needed_on'])->get()->isEmpty()) {
             return Response(DynamicNeed::create($attributes));
         } else {
             return Response('A dynamic need for that gadget already exists for that day', 400);
@@ -58,44 +57,44 @@ class DynamicNeedController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param DynamicNeed $dynamicNeed
+     * @param DynamicNeed $staticNeed
      * @return Response
      */
-    public function show(DynamicNeed $dynamicNeed): Response
+    public function show(DynamicNeed $staticNeed): Response
     {
-        return Response($dynamicNeed);
+        return Response($staticNeed);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param DynamicNeed $dynamicNeed
+     * @param DynamicNeed $staticNeed
      * @return Response
      */
-    public function update(Request $request, DynamicNeed $dynamicNeed): Response
+    public function update(Request $request, DynamicNeed $staticNeed): Response
     {
         $attributes = $request->validate([
             'gadget_id' => Rule::exists('gadgets', 'id'),
-            'day_of_week' => 'numeric|between:0,6'
+            'needed_on' => 'date',
         ]);
 
         $filters = DynamicNeed::query();
 
-        if (array_key_exists('day_of_week', $attributes)) {
-            $filters->where('day_of_week', $attributes['day_of_week']);
+        if (array_key_exists('needed_on', $attributes)) {
+            $filters->whereDate('needed_on', $attributes['needed_on']);
         } else {
-            $filters->where('day_of_week', $dynamicNeed->day_of_week);
+            $filters->whereDate('needed_on', $staticNeed->needed_on);
         }
 
         if (array_key_exists('gadget_id', $attributes)) {
             $filters->where('gadget_id', $attributes['gadget_id']);
         } else {
-            $filters->where('gadget_id', $dynamicNeed->gadget_id);
+            $filters->where('gadget_id', $staticNeed->gadget_id);
         }
 
         if (empty($filters->get()->all())) {
-            return Response($dynamicNeed->update($attributes));
+            return Response($staticNeed->update($attributes));
         } else {
             return Response('A dynamic need for that gadget already exists for that day', 400);
         }
@@ -104,11 +103,11 @@ class DynamicNeedController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param DynamicNeed $dynamicNeed
+     * @param DynamicNeed $staticNeed
      * @return Response
      */
-    public function destroy(DynamicNeed $dynamicNeed): Response
+    public function destroy(DynamicNeed $staticNeed): Response
     {
-        return Response($dynamicNeed->delete());
+        return Response($staticNeed->delete());
     }
 }

@@ -16,7 +16,7 @@ class CreateStaticNeedsTable extends Migration
         Schema::create('static_needs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('gadget_id');
-            $table->dateTime('needed_on');
+            $table->integer('day_of_week'); // DateTime->dayOfWeek => Sunday: 0, Monday: 1, ...
             $table->timestamps();
         });
     }

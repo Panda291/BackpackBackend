@@ -26,11 +26,11 @@ class Gadget extends Model
 
     public function dynamicNeeds()
     {
-        return $this->hasMany(StaticNeed::class, 'gadget_id', 'id');
+        return $this->hasMany(DynamicNeed::class, 'gadget_id', 'id');
     }
 
     public function staticNeeds()
     {
-        return $this->hasMany(DynamicNeed::class, 'gadget_id', 'id');
+        return $this->hasMany(StaticNeed::class, 'gadget_id', 'id');
     }
 }

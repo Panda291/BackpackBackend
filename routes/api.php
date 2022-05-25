@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\BackpackController;
-use App\Http\Controllers\DynamicNeedController;
-use App\Http\Controllers\GadgetController;
 use App\Http\Controllers\StaticNeedController;
+use App\Http\Controllers\GadgetController;
+use App\Http\Controllers\DynamicNeedController;
 use App\Http\Controllers\DebugController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -33,7 +33,7 @@ Route::controller(GadgetController::class)->group(function () {
 
 Route::get('/gadgets/{gadget}/switch', [DebugController::class, 'switch']);
 
-Route::controller(DynamicNeedController::class)->group(function () {
+Route::controller(StaticNeedController::class)->group(function () {
     Route::get('/static_needs', 'index');
     Route::post('/static_needs', 'store');
     Route::get('/static_needs/{dynamic_need}', 'show');
@@ -47,7 +47,7 @@ Route::controller(BackpackController::class)->group(function () {
     Route::get('/needed', 'needed');
 });
 
-Route::controller(StaticNeedController::class)->group(function () {
+Route::controller(DynamicNeedController::class)->group(function () {
     Route::get('/dynamic_needs', 'index');
     Route::post('/dynamic_needs', 'store');
     Route::get('/dynamic_needs/{static_need}', 'show');
