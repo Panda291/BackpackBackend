@@ -42,7 +42,7 @@ class BackpackController extends Controller
         return Response('', 202);
     }
 
-    public function allPresent()
+    public function missing()
     {
         $dynamicNeeds = DB::table('dynamic_needs')->whereDate('needed_on', Carbon::today())->get('gadget_id')->all();
         $dynamicNeeds = array_map(function ($e) {
